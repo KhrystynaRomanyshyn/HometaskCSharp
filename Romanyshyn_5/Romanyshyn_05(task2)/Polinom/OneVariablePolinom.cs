@@ -163,16 +163,16 @@ namespace Polinom
             }
             return result;
         }
-        //public static OneVariablePolinom Multiplication (OneVariablePolinom obj1, OneVariablePolinom obj2)
-        //{
-        //    int lengthResult = obj1.Length + obj2.Length - 1;
-        //    var result = new int[lengthResult];
-        //    for(int i=obj1.Length-1; i>=0; i--)
-        //    {
+        public static OneVariablePolinom Multiplication(OneVariablePolinom obj1, OneVariablePolinom obj2)
+        {
+            int lengthResult = obj1.Length + obj2.Length - 1;
+            var result = new int[lengthResult];
+            for (int i = obj1.Length - 1; i >= 0; i--)
+            {
 
-        //    }
-
-        //}
+            }
+            return obj1;
+        }
     }
 }
 
