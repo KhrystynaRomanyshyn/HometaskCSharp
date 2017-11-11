@@ -11,11 +11,13 @@ namespace Basic_06
         static void Main(string[] args)
         {
 
-            int[,] matrixA = { { 1, 1,1 }, { 1, 1,1}, { 1, 1,1 } };
-            int[,] matrixB = { { 1, 1,1 }, { 1, 1,1 }, { 1, 1,1 } };
+            int[,] matrixA = { { 1, 2, 3 }, { 2, -1, 2 } };
+            int[,] matrixB = { { 3, 2, 1 }, { 1, 3, -2 }, { 2, 4, 2 } };
+            int ryadku = matrixA.GetLength(0);
 
-            int[,] sum = Matrix.Add(matrixA, matrixB);
-            int[,] subb = Matrix.Sub(matrixA, matrixB);
+            //  int[,] sum = Matrix.Add(matrixA, matrixB);
+            //  int[,] subb = Matrix.Sub(matrixA, matrixB);
+            int[,] mult = Matrix.Multiply(matrixA, matrixB);
 
         }
     }
@@ -60,7 +62,29 @@ namespace Basic_06
             return AddOrSub(A, B, false);
         }
 
-        pu
+        public static int[,] Multiply(int[,] A, int[,] B)
+        {
+            if (A.GetLength(1) != B.GetLength(0))
+            {
+                throw new Exception("The number of columns in the first matrix should be equal to the numbers of lines of the second.");
+            }
 
+            {
+                int[,] result = new int[A.GetLength(0), B.GetLength(1)];
+                for (int k = 0; k < A.GetLength(1) - 1; k++)
+                {
+                    for (int l = 0; l < B.GetLength(1); l++)
+                    {
+
+                        for (int s = 0; s <= A.GetLength(0); s++)
+                        {
+                            result[k, l] += A[k, s] * B[s, l];
+                        }
+                    }
+                }
+
+                return result;
+            }
+        }
     }
 }
