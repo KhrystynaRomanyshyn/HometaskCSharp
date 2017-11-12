@@ -11,11 +11,12 @@ namespace Basic_05_task2
     {
         static void Main()
         {
-            var myPolinom = new OneVariablePolinom(1,0,-2,0);
-            var mySecondPolynom = new OneVariablePolinom(3, 4, 5);
+            var myPolinom = new OneVariablePolinom(1,1,1);
+            var mySecondPolynom = new OneVariablePolinom(3, -4);
 
             var addition = myPolinom + mySecondPolynom;
             var subtraction = myPolinom - mySecondPolynom;
+            var mult = myPolinom * mySecondPolynom;
 
             double d = myPolinom.Degree;
         }

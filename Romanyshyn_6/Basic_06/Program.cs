@@ -11,8 +11,8 @@ namespace Basic_06
         static void Main(string[] args)
         {
 
-            int[,] matrixA = { { 1, 2, 3 }, { 2, -1, 2 } };
-            int[,] matrixB = { { 3, 2, 1 }, { 1, 3, -2 }, { 2, 4, 2 } };
+            int[,] matrixA = { { 2,33, 4 } };
+            int[,] matrixB = { { 2,0,0,0,6 } };
             int ryadku = matrixA.GetLength(0);
 
             //  int[,] sum = Matrix.Add(matrixA, matrixB);

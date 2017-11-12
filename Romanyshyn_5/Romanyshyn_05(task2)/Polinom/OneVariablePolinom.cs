@@ -96,7 +96,7 @@ namespace Polinom
         {
             return SimpleOperation(obj1, obj2, false);
         }
-                
+
         public override string ToString()
         {
             string result = "";
@@ -163,15 +163,21 @@ namespace Polinom
             }
             return result;
         }
-        public static OneVariablePolinom Multiplication(OneVariablePolinom obj1, OneVariablePolinom obj2)
-        {
-            int lengthResult = obj1.Length + obj2.Length - 1;
-            var result = new int[lengthResult];
-            for (int i = obj1.Length - 1; i >= 0; i--)
-            {
 
+        public static OneVariablePolinom operator *(OneVariablePolinom obj1, OneVariablePolinom obj2)
+        {
+            int degreeResult = Convert.ToInt32(obj1.Degree + obj2.Degree);
+            var result = new int[degreeResult + 1];
+
+            for (int i = 0; i <= Convert.ToInt32(obj1.Degree); i++)
+            {
+                for (int j = 0; j <= Convert.ToInt32(obj2.Degree); j++)
+                {
+                    result[i + j] += obj1[i] * obj2[j];
+                }
             }
-            return obj1;
+
+            return new OneVariablePolinom(result.Reverse().ToArray());
         }
     }
 }
