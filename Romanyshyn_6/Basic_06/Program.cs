@@ -40,8 +40,6 @@ namespace Basic_06
             {
                 Console.WriteLine(exep.Message);
             }
-
-
         }
     }
 
@@ -61,7 +59,6 @@ namespace Basic_06
 
             int[,] result = new int[A.GetLength(0), A.GetLength(1)];
 
-
             for (int i = 0; i < A.GetLength(0); i++)
             {
                 for (int j = 0; j < B.GetLength(1); j++)
@@ -79,7 +76,6 @@ namespace Basic_06
             }
 
             return result;
-
         }
 
         public static int[,] Add(int[,] A, int[,] B)
