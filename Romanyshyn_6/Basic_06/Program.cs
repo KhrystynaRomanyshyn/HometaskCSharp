@@ -11,14 +11,29 @@ namespace Basic_06
         static void Main(string[] args)
         {
 
-            int[,] matrixA = { { 2,33, 4 } };
-            int[,] matrixB = { { 2,0,0,0,6 } };
+            int[,] matrixA = { {1,2},{ 3, 4 } };
+            int[,] matrixB = { { 5,6,7 }, { 8, 9, 10 } };
+            int[,] matrixC = { { 2, 3, 1 }, { 1, 7, 0 } };
             int ryadku = matrixA.GetLength(0);
 
-            //  int[,] sum = Matrix.Add(matrixA, matrixB);
-            //  int[,] subb = Matrix.Sub(matrixA, matrixB);
-            int[,] mult = Matrix.Multiply(matrixA, matrixB);
+            try
+            {
+                int[,] sum = Matrix.Add(matrixB, matrixC);
+                int[,] subb = Matrix.Sub(matrixB, matrixC);
+            }
+            catch (ArgumentException exeption)
+            {
+                Console.WriteLine(exeption.Message);
+            }
 
+            try
+            {
+                int[,] mult = Matrix.Multiply(matrixA, matrixB);
+            }
+            catch(ArgumentException ex )
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 
@@ -28,33 +43,35 @@ namespace Basic_06
         {
             if ((A.GetLength(0) != B.GetLength(0)) || (A.GetLength(1) != B.GetLength(1)))
             {
-                throw new Exception("Dimension of the matrices should be the same.");
+                throw new ArgumentException("Dimension of the matrices should be the same.");
             }
 
             int[,] result = new int[A.GetLength(0), A.GetLength(1)];
 
-            for (int i = 0; i < A.GetLength(0); i++)
-            {
-                for (int j = 0; j < B.GetLength(1); j++)
+           
+                for (int i = 0; i < A.GetLength(0); i++)
                 {
-                    if (isAdd)
+                    for (int j = 0; j < B.GetLength(1); j++)
                     {
-                        result[i, j] = A[i, j] + B[i, j];
-                    }
+                        if (isAdd)
+                        {
+                            result[i, j] = A[i, j] + B[i, j];
+                        }
 
-                    else
-                    {
-                        result[i, j] = A[i, j] - B[i, j];
+                        else
+                        {
+                            result[i, j] = A[i, j] - B[i, j];
+                        }
                     }
                 }
-            }
 
-            return result;
+                return result;
+
         }
 
         public static int[,] Add(int[,] A, int[,] B)
         {
-            return AddOrSub(A, B, true);
+                return AddOrSub(A, B, true);
         }
 
         public static int[,] Sub(int[,] A, int[,] B)
@@ -66,17 +83,17 @@ namespace Basic_06
         {
             if (A.GetLength(1) != B.GetLength(0))
             {
-                throw new Exception("The number of columns in the first matrix should be equal to the numbers of lines of the second.");
+                throw new ArgumentException("The number of columns in the first matrix should be equal to the numbers of lines of the second.");
             }
 
             {
                 int[,] result = new int[A.GetLength(0), B.GetLength(1)];
-                for (int k = 0; k < A.GetLength(1) - 1; k++)
+                for (int k = 0; k < A.GetLength(1) ; k++)
                 {
                     for (int l = 0; l < B.GetLength(1); l++)
                     {
 
-                        for (int s = 0; s <= A.GetLength(0); s++)
+                        for (int s = 0; s <= A.GetLength(0)-1; s++)
                         {
                             result[k, l] += A[k, s] * B[s, l];
                         }
