@@ -56,6 +56,22 @@ namespace Polinom
             get { return _array.Length; }
         }
 
+        public static OneVariablePolinom operator *(OneVariablePolinom obj1, OneVariablePolinom obj2)
+        {
+            int degreeResult = Convert.ToInt32(obj1.Degree + obj2.Degree);
+            var result = new int[degreeResult + 1];
+
+            for (int i = 0; i <= Convert.ToInt32(obj1.Degree); i++)
+            {
+                for (int j = 0; j <= Convert.ToInt32(obj2.Degree); j++)
+                {
+                    result[i + j] += obj1[i] * obj2[j];
+                }
+            }
+
+            return new OneVariablePolinom(result.Reverse().ToArray());
+        }
+
         public static OneVariablePolinom SimpleOperation(OneVariablePolinom obj1, OneVariablePolinom obj2, bool isAdd)
         {
 
@@ -164,21 +180,6 @@ namespace Polinom
             return result;
         }
 
-        public static OneVariablePolinom operator *(OneVariablePolinom obj1, OneVariablePolinom obj2)
-        {
-            int degreeResult = Convert.ToInt32(obj1.Degree + obj2.Degree);
-            var result = new int[degreeResult + 1];
-
-            for (int i = 0; i <= Convert.ToInt32(obj1.Degree); i++)
-            {
-                for (int j = 0; j <= Convert.ToInt32(obj2.Degree); j++)
-                {
-                    result[i + j] += obj1[i] * obj2[j];
-                }
-            }
-
-            return new OneVariablePolinom(result.Reverse().ToArray());
-        }
     }
 }
 
