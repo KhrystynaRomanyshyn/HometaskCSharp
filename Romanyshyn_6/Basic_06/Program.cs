@@ -10,6 +10,7 @@ namespace Basic_06
     {
         static void Main(string[] args)
         {
+            //int[,] matrixA = null;
 
             int[,] matrixA = { { 2, 3 }, { 2, 5 }, { 3, 1 } };
             int[,] matrixB = { { 5, 6, 7 }, { 8, 9, 10 } };
@@ -22,7 +23,7 @@ namespace Basic_06
                     int[,] sum = Matrix.Add(matrixB, matrixC);
                     int[,] subb = Matrix.Sub(matrixB, matrixC);
                 }
-                catch (ArgumentException exeption)
+                catch (MatrixOperationExeption exeption)
                 {
                     Console.WriteLine(exeption.Message);
                 }
@@ -31,7 +32,7 @@ namespace Basic_06
                 {
                     int[,] mult = Matrix.Multiply(matrixA, matrixB);
                 }
-                catch (ArgumentException ex)
+                catch (MatrixOperationExeption ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
@@ -49,7 +50,7 @@ namespace Basic_06
         {
             if ((A.GetLength(0) != B.GetLength(0)) || (A.GetLength(1) != B.GetLength(1)))
             {
-                throw new ArgumentException("Dimension of the matrices should be the same.");
+                throw new MatrixOperationExeption("Dimension of the matrices should be the same.");
             }
 
             if (A == null || B == null)
@@ -92,7 +93,7 @@ namespace Basic_06
         {
             if (A.GetLength(1) != B.GetLength(0))
             {
-                throw new ArgumentException("The number of columns in the first matrix should be equal to the numbers of lines of the second.");
+                throw new MatrixOperationExeption("The number of columns in the first matrix should be equal to the numbers of lines of the second.");
             }
             if (A == null || B == null)
             {
