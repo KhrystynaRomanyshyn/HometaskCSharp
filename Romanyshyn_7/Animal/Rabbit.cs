@@ -8,6 +8,9 @@ namespace AnimalGroup
 {
     class Rabbit : Herbivores
     {
-
+        public new string Description()
+        {
+            return string.Format("This is rabbit");
+        }
     }
 }

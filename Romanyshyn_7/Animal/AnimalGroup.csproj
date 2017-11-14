@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0F2B253C-5523-4E68-B276-F82551467578}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Animal</RootNamespace>
+    <RootNamespace>AnimalGroup</RootNamespace>
     <AssemblyName>Animal</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
