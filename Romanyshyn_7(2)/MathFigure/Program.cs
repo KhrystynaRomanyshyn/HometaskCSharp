@@ -10,17 +10,33 @@ namespace MathFigure
     {
         static void Main()
         {
-            Triangle triangle = new Triangle(3, 4, 5);
-            double areaTriangle = triangle.GetArea();
+            try
+            {
+                Triangle triangle = new Triangle(3, 4, 5);
+                double areaTriangle = triangle.GetArea();
+                string nameTriangle = triangle.GetName();
 
+                IsoscelesTriangle isoscelesTriangle = new IsoscelesTriangle(3, 4);
+                double areaIT = isoscelesTriangle.GetArea();
+                string nameIT = isoscelesTriangle.GetName();
 
-            //Circle circle = new Circle();
-            //circle.Radius = -10;
-            //double areaCircle = circle.GetArea();
+                Rectangle rectangle = new Rectangle(6, 7);
+                double areaRectangle = rectangle.GetArea();
 
-            //Rectangle rectangle = new Rectangle();
+                Square square = new Square(9);
+                double areaSquare = square.GetArea();
 
-
+                Circle circle = new Circle(-10);
+                double areaCircle = circle.GetArea();
+            }
+            catch(TriangleSideException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch(ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

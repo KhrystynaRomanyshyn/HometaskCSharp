@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MathFigure
+﻿namespace MathFigure
 {
     abstract class Shape
     {
-        public abstract string GetName();
+        public string GetName()
+        {
+            return $"This is {GetType().Name}";
+        }
 
-        abstract public double GetArea();
-
+        public abstract double GetArea();
     }
 }

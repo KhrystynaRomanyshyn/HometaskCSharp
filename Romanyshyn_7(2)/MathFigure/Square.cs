@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MathFigure
+﻿namespace MathFigure
 {
     class Square : Rectangle
     {
+        public Square(int a) : base(a,a)
+        {
+        }
     }
 }

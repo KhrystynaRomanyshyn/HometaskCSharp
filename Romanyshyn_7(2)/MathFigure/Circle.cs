@@ -1,43 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathFigure
 {
     class Circle : Shape
     {
-        private int radius;
+        private int _radius;
 
-        public int Radius
+        public Circle(int radius)
         {
-            get
+            if (radius < 0)
             {
-                return radius;
+                throw new ArgumentException("Radius must be > 0");
             }
-            set
-            {
-                if (radius < 0)
-                    throw new Exception("Radius must be >0");
-                radius = value;
-            }
+
+            _radius = radius;
         }
-
-
 
         public override double GetArea()
         {
-            return Math.PI * Radius * Radius;
+            return Math.Round(Math.PI * _radius * _radius, 2);
         }
-
-
-        public override string GetName()
-        {
-            return string.Format("This is {0}", typeof(Circle));
-        }
-
-       
-
     }
 }
