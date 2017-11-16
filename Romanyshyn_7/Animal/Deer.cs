@@ -8,9 +8,5 @@ namespace AnimalGroup
 {
     class Deer : Herbivores
     {
-        public new string Description()
-        {
-            return string.Format("This is deer");
-        }
     }
 }

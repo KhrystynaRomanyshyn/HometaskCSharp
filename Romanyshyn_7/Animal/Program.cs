@@ -24,36 +24,8 @@ namespace AnimalGroup
                 new Rabbit()
             };
 
-            int amount = GetAnimalCount(typeof(Fox), animals);
-            int amount2 = GetAnimalsCountByClass(typeof(Predators), animals);
-        }
-
-        static int GetAnimalCount(Type type, Animal[] animals)   // Gets animals count using type of animal (Wolf, Fox etc)
-        {
-            int counter = 0;
-            for (int i = 0; i < animals.Length; i++)
-            {
-                if (animals[i].GetType() == type)
-                {
-                    counter++;
-                }
-            }
-
-            return counter;
-        }
-
-        static int GetAnimalsCountByClass(Type type, Animal[] animals)         // Gets animals count by class (Predators, Herbivores)
-        {
-            int counter = 0;
-            for(int i = 0; i < animals.Length; i++)
-            {
-               
-                if (animals[i].GetType().BaseType == type)
-                {
-                    counter++;
-                }
-            }
-            return counter;
+            int amount = animal.GetAnimalCount(typeof(Fox), animals);
+            int amount2 = animal.GetAnimalsCountByClass(typeof(Predators), animals);
         }
     }
 }

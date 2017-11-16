@@ -8,9 +8,5 @@ namespace AnimalGroup
 {
     class Wolf : Predators
     {
-        public new string Description()
-        {
-            return string.Format("This is wolf");
-        }
     }
 }

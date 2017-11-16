@@ -8,9 +8,5 @@ namespace AnimalGroup
 {
     class Herbivores: Animal
     {
-        public override string Description()
-        {
-            return string.Format("This is herbiores");
-        }
     }
 }
