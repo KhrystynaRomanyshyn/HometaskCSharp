@@ -56,6 +56,7 @@
     <Compile Include="SeleniumTestBase.cs" />
     <Compile Include="TestWiki.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="webdriver\BrowserFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
