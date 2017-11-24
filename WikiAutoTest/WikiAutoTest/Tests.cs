@@ -47,14 +47,14 @@ namespace WikiAutoTest
                 return dayMonth != null && year != null;
             });
 
-            Assert.AreEqual("23 листопада", dayMonth.GetAttribute("title"));
+            Assert.AreEqual("24 листопада", dayMonth.GetAttribute("title"));
             Assert.AreEqual("2017", year.GetAttribute("title"));
         }
 
         [TestCleanup]
         public void CleanUp()
         {
-           // driver.Quit();
+            _driver.Quit();
         }
     }
 }
