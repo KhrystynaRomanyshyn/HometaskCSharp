@@ -1,0 +1,115 @@
+body {
+	width: 100%;
+	margin: 0px;
+}
+
+h1{
+	color: blue;
+	margin: 0px;
+}
+
+/* HEADER */
+.header {
+    
+    position: relative;
+    height: 110px;
+    width: 100%;
+    text-align: center;
+	vertical-align: top;
+	margin: 0;
+    white-space: nowrap;
+}
+
+.header-block {
+	display:inline-block;
+	vertical-align: top;
+	
+	margin: 0;
+	white-space: normal;
+}
+
+.header-top {
+	border: groove;
+}
+
+.header-bottom {
+}
+
+/* BODY */
+
+.container {
+    
+    position: absolute;
+    height: calc(100% - 135px);
+    width: 100%;
+    white-space: nowrap;
+	background: url('folders.png')  top center fixed;
+	margin: 0px;
+}
+
+.container-left {
+ 	width:30%;
+    height: 100%;
+    display: inline-block;
+	border: groove;
+	padding: 0px;
+	float: left;
+	white-space: normal;
+	vertical-align: top;
+	margin: 0px;
+}
+
+.container-middle {
+ 	width:40%;
+    height: 100%;
+	border-top:  groove;
+	border-bottom:  groove;
+	float: left;
+	white-space: normal;
+    display: inline-block;
+	vertical-align: top;
+    background-color: antiquewhite;
+	margin: 0px;
+	padding: 0px;
+}
+
+.container-middle-form {
+	border: groove;
+	margin: 5px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.conatiner-middle-form-field {
+	padding-bottom: 3px;
+}
+
+.container-middle-form span {
+	display: inline-block;
+	width: 90px;
+	text-align: right;
+}
+
+.container-right {
+ 	width:30%;
+    height: 100%;
+    display: inline-block;
+	border: groove;
+	padding: 0px;
+	
+	white-space: normal;
+	vertical-align: top;
+	margin: 0px;
+}
+
+.footer {
+    
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+    height: 20px;
+}
