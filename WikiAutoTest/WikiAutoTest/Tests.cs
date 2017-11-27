@@ -72,10 +72,19 @@ namespace WikiAutoTest
                 .AreEqual("Вчені знайшли невідому раніше порожнину в піраміді Хеопса. Це перше велике відкриття у цій піраміді з XIX століття[24][25]", s);
         }
 
+        [TestMethod]
+        public void CheckSearhFealdOnWiki()
+        {
+            var mainPage = new WikiMainPage(_driver, _webDriverWait);
+            _driver.FindElement(By.Id("searchInput")).SendKeys("Апаратне забезпечення");
+            _driver.FindElement(By.Id("searchButton")).Click();
+            Assert.AreEqual("Апаратне забезпечення — Вікіпедія", _driver.Title);
+        }
+
         [TestCleanup]
         public void CleanUp()
         {
-            //_driver.Quit();
+            _driver.Quit();
         }
     }
 }
