@@ -5,6 +5,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support;
 using OpenQA.Selenium.Support.UI;
 using WikiAutoTest.Pages.Google;
+using WikiAutoTest.Pages.Wiki;
 
 namespace WikiAutoTest
 {
@@ -19,6 +20,7 @@ namespace WikiAutoTest
         {
             _driver = new ChromeDriver();
             _webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            _driver.Manage().Window.Maximize();
         }
 
         [TestMethod]
@@ -34,8 +36,7 @@ namespace WikiAutoTest
         [TestMethod]
         public void CheckDate()
         {
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl("https://uk.wikipedia.org/wiki/Головна_сторінка");
+            var mainPage = new WikiMainPage(_driver, _webDriverWait);
 
             IWebElement dayMonth = null;
             IWebElement year = null;
@@ -51,10 +52,30 @@ namespace WikiAutoTest
             Assert.AreEqual("2017", year.GetAttribute("title"));
         }
 
+        [TestMethod]
+        public void CheckOpeningCurrentEvents()
+        {
+            var mainPage = new WikiMainPage(_driver, _webDriverWait);
+
+            _driver.FindElement(By.LinkText("Поточні події")).Click();
+            Assert.AreEqual("Вікіпедія:Поточні події — Вікіпедія", _driver.Title);
+        }
+
+        [TestMethod]
+        public void CheckNews()
+        {
+            var mainPage = new WikiMainPage(_driver, _webDriverWait);
+            _driver.FindElement(By.LinkText("Поточні події")).Click();
+            IWebElement element = _driver.FindElement(By.XPath("//*[@id='mw-content-text']/div/table/tbody/tr[1]/td[1]/div[4]/ul/li[14]/ul/li"));
+            string s = element.Text;
+            Assert
+                .AreEqual("Вчені знайшли невідому раніше порожнину в піраміді Хеопса. Це перше велике відкриття у цій піраміді з XIX століття[24][25]", s);
+        }
+
         [TestCleanup]
         public void CleanUp()
         {
-            _driver.Quit();
+            //_driver.Quit();
         }
     }
 }
