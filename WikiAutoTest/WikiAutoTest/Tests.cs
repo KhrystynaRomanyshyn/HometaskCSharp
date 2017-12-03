@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Opera;
 using OpenQA.Selenium.Support;
 using OpenQA.Selenium.Support.UI;
 using WikiAutoTest.Pages.Google;
@@ -18,9 +19,10 @@ namespace WikiAutoTest
         [TestInitialize]
         public void StartUp()
         {
-            _driver = new ChromeDriver();
+             // _driver = new ChromeDriver();
+           _driver = new OperaDriver("C:\\Users\\Khrystyna\\source\\repos\\operadriver.exe");
             _webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            _driver.Manage().Window.Maximize();
+           // _driver.Manage().Window.Maximize();
         }
 
         [TestMethod]
