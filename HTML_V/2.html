@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -33,12 +33,12 @@
                         <br> 27.34 Mb из 100.00 Mb
                 </div>
 			</div>
-			<div class="container-middle">
-                <table>
+			<div class="container-middle" >
+                <table id="myTable">
                     <tr class="table-titles" >
-                        <td  >Файл</td>
-                        <td>Размер (Kb)</td>
-                        <td>Дата и время</td>
+                        <td onclick="sortTable(0)">Файл</td>
+                        <td onclick="sortTable(1)">Размер (Kb)</td>
+                        <td onclick="sortTable(2)">Дата и время</td>
                         <td>Удалить</td>
                      </tr>
                     <tr>
@@ -83,5 +83,6 @@
 		<div class="footer">
 			©2014, EPAM RD PHP Training
 		</div>
+        <script src="JavaScript.js"></script>
 	</body>
 </html>

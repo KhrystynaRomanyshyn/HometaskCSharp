@@ -106,9 +106,10 @@ table{
 	width: -webkit-fill-available;
 	padding: 2px;
 }
-.table-titles{
-	text-align: center;
-	font-size: smaller;
+.table-titles {
+    text-align: center;
+    font-size: smaller;
+    cursor: pointer;
 }
 .table-titles td {
 	border-top: 2px solid rgb(165, 163, 163);
