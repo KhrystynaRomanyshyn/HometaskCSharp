@@ -82,13 +82,18 @@ namespace Romanyshyn_8_LINQ_
             {
                 //LinqBegin6. Дана строковая последовательность.
                 //Найти сумму длин всех строк, входящих в данную последовательность.
-                //TODO
+
+                List<string> str = new List<string> { "qw3", "asdf5", "2sd4", "" };
+                string amount = str.Aggregate<string>((x, y) => x + y);
+                int sum = amount.Count();
             }
 
             {
                 //LinqBegin11. Дана последовательность непустых строк. 
                 //Получить строку, состоящую из начальных символов всех строк исходной последовательности.
-                //TODO
+
+                List<string> str = new List<string> { "acv", "bdgf", "c23h", "d12kj" };
+                string res = string.Concat(str.Select(x => x[0]));
 
             }
 
@@ -107,6 +112,11 @@ namespace Romanyshyn_8_LINQ_
                 //Строки последовательности содержат только цифры и заглавные буквы латинского алфавита.
                 //Извлечь из A все строки длины K, оканчивающиеся цифрой, отсортировав их по возрастанию.
                 //TODO
+
+                int k = 4;
+                List<string> A = new List<string> { "12ABC", "4", "7ZX7", "589POK" };
+                string res = A.FirstOrDefault(x => (x.Length == k) && (Char.IsDigit(x[k-1])));
+
             }
 
             {
@@ -198,6 +208,8 @@ namespace Romanyshyn_8_LINQ_
                     //TODO
                 }
             }
+
+            Console.ReadKey();
         }
     }
 
