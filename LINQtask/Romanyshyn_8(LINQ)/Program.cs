@@ -104,7 +104,7 @@ namespace Romanyshyn_8_LINQ_
                 //В полученной последовательности(не содержащей одинаковых элементов) поменять порядок элементов на обратный.
                 int k = 5;
                 IEnumerable<int> n = new int[] { 12, 88, 1, 3, 5, 4, 6, 6, 2, 5, 8, 9, 0, 90 };
-                var res = n.Where(x => x % 2 == 0).Except(n.Skip(k)).Reverse();
+                var res = n.Where(x => x % 2 == 0).Except(n.Skip(k)).Reverse().ToArray();
             }
 
             {
@@ -113,8 +113,8 @@ namespace Romanyshyn_8_LINQ_
                 //Извлечь из A все строки длины K, оканчивающиеся цифрой, отсортировав их по возрастанию.
 
                 int k = 4;
-                List<string> A = new List<string> { "12ABC", "4", "AZX7","zsa5","Chg6","vdf9", "589POK" };
-                var res = A.Where(x => (x.Length == k) && (Char.IsDigit(x[k-1]))).OrderBy(x=>x).ToArray();
+                List<string> A = new List<string> { "12ABC", "4", "AZX7", "zsa5", "Chg6", "vdf9", "589POK" };
+                var res = A.Where(x => (x.Length == k) && (Char.IsDigit(x[k - 1]))).OrderBy(x => x).ToArray();
 
             }
 
@@ -123,7 +123,11 @@ namespace Romanyshyn_8_LINQ_
                 //Найти теоретико - множественное объединение двух фрагментов A: первый содержит все элементы до первого элемента, 
                 //большего D(не включая его), а второй — все элементы, начиная с элемента с порядковым номером K.
                 //Полученную последовательность(не содержащую одинаковых элементов) отсортировать по убыванию.
-                //TODO
+
+                int D = 8;
+                int K = 6;
+                IEnumerable<int> A = new int[] { 2, -6, 2, 5, 8, 9, 0, 90 };
+                var res = A.TakeWhile(x => x < D).Concat(A.Skip(K)).ToArray();
             }
 
             {
@@ -140,21 +144,27 @@ namespace Romanyshyn_8_LINQ_
                 //символа берется первый символ этой строки; в противном случае берется последний символ строки.
                 //Отсортировать полученные символы по убыванию их кодов.
 
-                List<string> s = new List<string> {"abcd", "efs", "hgtrff", "dfeel", "g5" };
+                List<string> s = new List<string> { "abcd", "efs", "hgtrff", "dfeel", "g5" };
                 var res = s.Select(x =>
                 {
                     if (x.Length % 2 != 0)
                         return x[0];
                     else
-                        return x[x.Length-1];
-                }).OrderByDescending(x=>x).ToArray();
+                        return x[x.Length - 1];
+                }).OrderByDescending(x => x).ToArray();
             }
 
             {
                 //LinqBegin44. Даны целые числа K1 и K2 и целочисленные последовательности A и B.
                 //Получить последовательность, содержащую все числа из A, большие K1, и все числа из B, меньшие K2. 
                 //Отсортировать полученную последовательность по возрастанию.
-                //TODO
+
+                int k1 = 5;
+                int k2 = 7;
+                int[] A = new int[] { 1, 4, 2, 6, 9, 4 };
+                int[] B = new int[] { 8, 4, 6, 2, 8, 0 };
+                var res = A.Where(x => x > k1).Concat(B.Where(x => x < k2)).ToArray();
+
             }
             {
                 //LinqBegin46. Даны последовательности положительных целых чисел A и B; все числа в каждой последовательности различны.
@@ -166,7 +176,7 @@ namespace Romanyshyn_8_LINQ_
                 //разделенные дефисом, например, «49 - 129».
                 IEnumerable<int> n1 = new int[] { 12, 88, 11, 3, 55, 679, 222, 845, 9245 };
                 IEnumerable<int> n2 = new int[] { 123, 888, 551, 443, 69, 222, 780 };
-                var res = n1.Join(n2, x => x % 10, y => y % 10, (x, y) => x.ToString() + " - " + y.ToString());
+                var res = n1.Join(n2, x => x % 10, y => y % 10, (x, y) => x.ToString() + " - " + y.ToString()).ToArray();
             }
             {
                 //LinqBegin48.Даны строковые последовательности A и B; все строки в каждой последовательности различны, 
@@ -175,7 +185,11 @@ namespace Romanyshyn_8_LINQ_
                 //Представить найденное объединение в виде последовательности строк, содержащих первый и второй элементы пары, 
                 //разделенные двоеточием, например, «AB: CD». Порядок следования пар должен определяться порядком 
                 //первых элементов пар(по возрастанию), а для равных первых элементов — порядком вторых элементов пар(по убыванию).
-                //TODO
+
+                List<string> A = new List<string> { "12QW", "34ASJH", "DB", "7AAAA" };
+                List<string> B = new List<string> { "9OIU", "09JB", "87", "55555", "HH" };
+                var res = A.Join(B, x => x.Length, y => y.Length, (x, y) => x.ToString() + ":" + y.ToString()).ToArray();
+
             }
 
             {
