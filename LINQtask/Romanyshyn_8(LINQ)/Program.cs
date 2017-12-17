@@ -111,11 +111,10 @@ namespace Romanyshyn_8_LINQ_
                 //LinqBegin22. Дано целое число K (> 0) и строковая последовательность A.
                 //Строки последовательности содержат только цифры и заглавные буквы латинского алфавита.
                 //Извлечь из A все строки длины K, оканчивающиеся цифрой, отсортировав их по возрастанию.
-                //TODO
 
                 int k = 4;
-                List<string> A = new List<string> { "12ABC", "4", "7ZX7", "589POK" };
-                string res = A.FirstOrDefault(x => (x.Length == k) && (Char.IsDigit(x[k-1])));
+                List<string> A = new List<string> { "12ABC", "4", "AZX7","zsa5","Chg6","vdf9", "589POK" };
+                var res = A.Where(x => (x.Length == k) && (Char.IsDigit(x[k-1]))).OrderBy(x=>x).ToArray();
 
             }
 
@@ -131,7 +130,7 @@ namespace Romanyshyn_8_LINQ_
                 //LinqBegin34. Дана последовательность положительных целых чисел.
                 //Обрабатывая только нечетные числа, получить последовательность их строковых представлений и отсортировать ее по возрастанию.
                 IEnumerable<int> n = new int[] { 12, 88, 1, 3, 5, 4, 6, 6, 2, 5, 8, 9, 0, 90 };
-                var res = n.Where(x => x % 2 != 0).Select(x => x.ToString()).OrderBy(x => x);
+                var res = n.Where(x => x % 2 != 0).Select(x => x.ToString()).OrderBy(x => x).ToArray();
             }
 
             {
@@ -140,7 +139,15 @@ namespace Romanyshyn_8_LINQ_
                 //если соответствующая строка исходной последовательности имеет нечетную длину, то в качестве
                 //символа берется первый символ этой строки; в противном случае берется последний символ строки.
                 //Отсортировать полученные символы по убыванию их кодов.
-                //TODO
+
+                List<string> s = new List<string> {"abcd", "efs", "hgtrff", "dfeel", "g5" };
+                var res = s.Select(x =>
+                {
+                    if (x.Length % 2 != 0)
+                        return x[0];
+                    else
+                        return x[x.Length-1];
+                }).OrderByDescending(x=>x).ToArray();
             }
 
             {
