@@ -10,6 +10,13 @@ namespace Romanyshyn_8_LINQ_
         public int Year { get; set; }
     }
 
+    class Entrant
+    {
+        public int SchoolNumber { get; set; }
+        public int Year { get; set; }
+        public string Surname { get; set; }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -39,6 +46,29 @@ namespace Romanyshyn_8_LINQ_
             films.Sort((f1, f2) => f1.Name.CompareTo(f2.Name));
             //or
             films.OrderBy(film => film.Name);
+
+            {
+                //LinqObj17. Исходная последовательность содержит сведения об абитуриентах. Каждый элемент последовательности
+                //включает следующие поля: < Номер школы > < Год поступления > < Фамилия >
+                //Для каждого года, присутствующего в исходных данных, вывести число различных школ, которые окончили абитуриенты, 
+                //поступившие в этом году (вначале указывать число школ, затем год). 
+                //Сведения о каждом годе выводить на новой строке и упорядочивать по возрастанию числа школ, 
+                //а для совпадающих чисел — по возрастанию номера года.
+                //TODO
+                var entrants = new List<Entrant>
+                {
+                    new Entrant { SchoolNumber = 12, Year=1998, Surname="Potapenko" },
+                    new Entrant { SchoolNumber = 12, Year=2002, Surname="Mosenko"},
+                    new Entrant { SchoolNumber = 1, Year=2002, Surname="Ivanenko"},
+                    new Entrant { SchoolNumber =5, Year=2015, Surname="Petriv"},
+                    new Entrant { SchoolNumber = 1, Year=2015, Surname="Malun"}
+                };
+                
+                var res1 = entrants.GroupBy(x => x.Year).OrderBy(x => x.Count()).ThenBy(x => x.Key);
+
+                foreach (var group in res1)
+                    Console.WriteLine($" {group.Count()} : {group.Key.ToString()} ");
+            }
 
             {
                 // OrderByDescending, Skip, SkipWhile, Take, TakeWhile, Select, Concat
@@ -163,7 +193,7 @@ namespace Romanyshyn_8_LINQ_
                 int k2 = 7;
                 int[] A = new int[] { 1, 4, 2, 6, 9, 4 };
                 int[] B = new int[] { 8, 4, 6, 2, 8, 0 };
-                var res = A.Where(x => x > k1).Concat(B.Where(x => x < k2)).ToArray();
+                var res = (A.Where(x => x > k1).Concat(B.Where(x => x < k2))).OrderBy(x => x).ToArray();
 
             }
             {
@@ -219,15 +249,7 @@ namespace Romanyshyn_8_LINQ_
 
                 }
 
-                {
-                    //LinqObj17. Исходная последовательность содержит сведения об абитуриентах. Каждый элемент последовательности
-                    //включает следующие поля: < Номер школы > < Год поступления > < Фамилия >
-                    //Для каждого года, присутствующего в исходных данных, вывести число различных школ, которые окончили абитуриенты, 
-                    //поступившие в этом году (вначале указывать число школ, затем год). 
-                    //Сведения о каждом годе выводить на новой строке и упорядочивать по возрастанию числа школ, 
-                    //а для совпадающих чисел — по возрастанию номера года.
-                    //TODO
-                }
+
             }
 
             Console.ReadKey();
