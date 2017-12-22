@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Romanyshyn_8_LINQ_
 {
@@ -19,8 +20,49 @@ namespace Romanyshyn_8_LINQ_
 
     class Program
     {
-        static void Main(string[] args)
+        public static object[] RET(List<object> list)
         {
+            return list.Where(x => x is Int32).ToArray();
+        }
+
+        public static int Fuctorial(int n)
+        {
+            if (n == 1)
+                return 1;
+            else
+                return n * Fuctorial(n - 1);
+            
+        }
+
+        static void Main()
+        {
+
+            int num = 3;
+            //int fuct = num;
+            //for (int i=num-1; i>=1; i--)
+            //{
+            //    fuct *= i;
+            //}
+            var qaqaqa = Fuctorial(num);
+
+            List<object> list = new List<object> { 3, 'a', "hhgg8", 7, 4, 'f' };
+            var ressss=RET(list);
+
+
+            string a = "hello";
+            StringBuilder st = new StringBuilder(a);
+           
+            st.Append(" word!");
+           
+            var aq= st.Length;
+            var b = st.Capacity;
+            string rrrrr = "";
+            for (int i=a.Length-1; i>=0; i--)
+            {
+                rrrrr += a[i];
+            }
+
+
             var films = new List<Film>
             {
                 new Film { Name = "Jaws", Year = 1975 },
@@ -216,9 +258,9 @@ namespace Romanyshyn_8_LINQ_
                 //разделенные двоеточием, например, «AB: CD». Порядок следования пар должен определяться порядком 
                 //первых элементов пар(по возрастанию), а для равных первых элементов — порядком вторых элементов пар(по убыванию).
 
-                List<string> A = new List<string> { "12QW", "34ASJH", "DB", "7AAAA" };
-                List<string> B = new List<string> { "9OIU", "09JB", "87", "55555", "HH" };
-                var res = A.Join(B, x => x.Length, y => y.Length, (x, y) => x.ToString() + ":" + y.ToString()).ToArray();
+                List<string> A = new List<string> { "12QW", "34ASJH", "DB", "7AAAA", "3h" };
+                List<string> B = new List<string> { "9OIU", "09JB", "87", "55555", "HH", "56" };
+                var res = A.Join(B, x => x.Length, y => y.Length, (x, y) => x.ToString() + ":" + y.ToString()).OrderBy(x=>x[0]).ThenByDescending(y=>y).ToArray();
 
             }
 
