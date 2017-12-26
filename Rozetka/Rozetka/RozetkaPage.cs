@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rozetka
 {
-   public class RozetkaPage
+    public class RozetkaPage
     {
         private IWebDriver _driver;
 
@@ -39,12 +39,12 @@ namespace Rozetka
 
         public bool SearchResult()
         {
-           return _driver.FindElement(By.ClassName("g-i-tile-i-title")).Text.Contains("Hyundai");
+            return _driver.FindElement(By.ClassName("g-i-tile-i-title")).Text.Contains("Hyundai");
         }
 
         public bool GetMoreItemsClass()
         {
-           return _driver.FindElement(By.XPath("//*[@id=\"block_with_search\"]/div/div[2]/div[33]/a")).Displayed;
+            return _driver.FindElement(By.XPath("//*[@id=\"block_with_search\"]/div/div[2]/div[33]/a")).Displayed;
         }
 
         public IWebElement FindElement(By by, int timeoutInSeconds)
@@ -68,10 +68,28 @@ namespace Rozetka
             return _driver.FindElement(by);
         }
 
-        //public List<int> SortingResultPrice()
-        //{
-        //    var priceList = new List<int>();
-        // return _driver.FindElements(By.ClassName("g-price-uah")).ToList().ForEach(item=>priceList.ad);
-        //}
+        public List<string> SortingResultPrice()
+        {
+            var priceList = new List<string>();
+            var priceElements = _driver.FindElements(By.ClassName("g-price-uah"));
+
+            for (int i = 0; i < priceElements.Count; i++)
+            {
+                priceList.Add( priceElements[i].Text);
+            }
+
+            return priceList;
+        }
+
+        public List<string> SortPrice(List<string> priceList)
+        {
+            var priceInt = new List<int>();
+
+            for (int i=0; i<priceList.Count; i++)
+            {
+                priceList[i].Substring(priceList[i].IndexOf("грн")).Remove(priceList[i].IndexOf(" "));
+            }
+            return priceList;
+        }
     }
 }

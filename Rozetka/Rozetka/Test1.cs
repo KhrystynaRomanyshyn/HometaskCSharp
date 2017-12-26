@@ -40,13 +40,16 @@ namespace Rozetka
             page.FindElementWithWait(By.Id("filter_producer_12"), By.Id("reset_filter69"), 15).Click();
             page.FindElementWithWait(By.CssSelector("#sort_view > a"), By.Id("reset_filter12"), 15).Click();
             page.FindElement(By.Id("filter_sortexpensive"), 15).Click();
-           // NUnit.Framework.Assert.
+
+          var a=  page.SortingResultPrice();
+            page.SortPrice(a);
+            // NUnit.Framework.Assert
         }
 
         [TestCleanup]
         public void TearDown()
         {
-          // driver.Quit();
+           driver.Quit();
         }
     }
 }
