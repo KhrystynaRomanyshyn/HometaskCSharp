@@ -28,8 +28,8 @@ namespace Rozetka
             //RozetkaPage page = new RozetkaPage(driver);
             page.Open();
             page.SearchFor("Hyundai");
-            NUnit.Framework.Assert.AreEqual(page.SearchResult(), "Hyundai");
-            NUnit.Framework.Assert.AreEqual(page.GetMoreItemsClass(), "novisited g-i-more-link");
+            NUnit.Framework.Assert.IsTrue(page.SearchResult());
+            NUnit.Framework.Assert.IsTrue(page.GetMoreItemsClass(), "'Показать еще 32 товара' element hasn't been displayed");
         }
 
         [TestMethod]
@@ -37,16 +37,16 @@ namespace Rozetka
         {
             page.OpenSmartphonesSection();
             page.FindElement(By.Id("filter_producer_69"), 10).Click();
-            page.FindElement(By.Id("filter_producer_12"), 10).Click();
-          //  driver.FindElement(By.Id("filter_producer_12")).Click();
-            page.FindElement(By.Name("drop_link"), 15).Click();
-            page.FindElement(By.Id("filter_sortcheap"), 15).Click();
+            page.FindElementWithWait(By.Id("filter_producer_12"), By.Id("reset_filter69"), 15).Click();
+            page.FindElementWithWait(By.CssSelector("#sort_view > a"), By.Id("reset_filter12"), 15).Click();
+            page.FindElement(By.Id("filter_sortexpensive"), 15).Click();
+           // NUnit.Framework.Assert.
         }
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
-           driver.Quit();
+          // driver.Quit();
         }
     }
 }

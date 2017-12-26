@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rozetka
 {
-    class RozetkaPage
+   public class RozetkaPage
     {
         private IWebDriver _driver;
 
@@ -37,14 +37,14 @@ namespace Rozetka
             _driver.FindElement(By.Name("text")).Submit();
         }
 
-        public string SearchResult()
+        public bool SearchResult()
         {
-           return _driver.FindElement(By.Id("search_result_title_text")).Text;
+           return _driver.FindElement(By.ClassName("g-i-tile-i-title")).Text.Contains("Hyundai");
         }
 
-        public string GetMoreItemsClass()
+        public bool GetMoreItemsClass()
         {
-           return _driver.FindElement(By.XPath("//*[@id=\"block_with_search\"]/div/div[2]/div[33]/a")).GetAttribute("class");
+           return _driver.FindElement(By.XPath("//*[@id=\"block_with_search\"]/div/div[2]/div[33]/a")).Displayed;
         }
 
         public IWebElement FindElement(By by, int timeoutInSeconds)
@@ -52,9 +52,26 @@ namespace Rozetka
             if (timeoutInSeconds > 0)
             {
                 var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutInSeconds));
-                return wait.Until(drv => drv.FindElement(by));
+                return wait.Until(ExpectedConditions.ElementToBeClickable(by));
             }
             return _driver.FindElement(by);
         }
+
+        public IWebElement FindElementWithWait(By by, By byNewItem, int timeoutInSeconds)
+        {
+            if (timeoutInSeconds > 0)
+            {
+                var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutInSeconds));
+                wait.Until(ExpectedConditions.ElementExists(byNewItem));
+                return _driver.FindElement(by);
+            }
+            return _driver.FindElement(by);
+        }
+
+        //public List<int> SortingResultPrice()
+        //{
+        //    var priceList = new List<int>();
+        // return _driver.FindElements(By.ClassName("g-price-uah")).ToList().ForEach(item=>priceList.ad);
+        //}
     }
 }
