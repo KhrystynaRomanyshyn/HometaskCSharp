@@ -11,14 +11,14 @@ namespace Rozetka
     [TestClass]
     public class Test1
     {
-        IWebDriver driver;
+        IWebDriver _driver;
         RozetkaPage page;
 
         [TestInitialize]
         public void SetUp()
         {
-            driver = new ChromeDriver();
-            page = new RozetkaPage(driver);
+            _driver = new ChromeDriver();
+            page = new RozetkaPage(_driver);
         }
 
         [TestMethod]
@@ -41,15 +41,24 @@ namespace Rozetka
             page.FindElementWithWait(By.CssSelector("#sort_view > a"), By.Id("reset_filter12"), 15).Click();
             page.FindElement(By.Id("filter_sortexpensive"), 15).Click();
 
-          var a=  page.SortingResultPrice();
-            page.SortPrice(a);
+            var prices = page.GetPrices();
+            int[] notSortedPrices = new int[prices.Count];
+            prices.CopyTo(notSortedPrices);
+
+            prices.Sort();
+            prices.Reverse();
+
+            for (int i = 0; i < prices.Count; i++)
+            {
+                NUnit.Framework.Assert.AreEqual(prices[i], notSortedPrices[i]);
+            }
             // NUnit.Framework.Assert
         }
 
         [TestCleanup]
         public void TearDown()
         {
-           driver.Quit();
+           _driver.Quit();
         }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rozetka
@@ -68,28 +69,20 @@ namespace Rozetka
             return _driver.FindElement(by);
         }
 
-        public List<string> SortingResultPrice()
+        public List<int> GetPrices()
         {
+            Thread.Sleep(5000);
             var priceList = new List<string>();
+
             var priceElements = _driver.FindElements(By.ClassName("g-price-uah"));
 
             for (int i = 0; i < priceElements.Count; i++)
             {
-                priceList.Add( priceElements[i].Text);
+                priceList.Add(
+                    new string(priceElements[i].Text.Where(c => c >= '0' && c <= '9').ToArray()));
             }
 
-            return priceList;
-        }
-
-        public List<string> SortPrice(List<string> priceList)
-        {
-            var priceInt = new List<int>();
-
-            for (int i=0; i<priceList.Count; i++)
-            {
-                priceList[i].Substring(priceList[i].IndexOf("грн")).Remove(priceList[i].IndexOf(" "));
-            }
-            return priceList;
+            return priceList.Select(p => int.Parse(p)).ToList();
         }
     }
 }
