@@ -69,6 +69,20 @@ namespace Rozetka
             return _driver.FindElement(by);
         }
 
+        public bool isNameProduct()
+        {
+            var nameElements = _driver.FindElements(By.ClassName("g-i-tile-i-title"));
+
+            for (int i=0; i<nameElements.Count; i++)
+            {
+                if (nameElements[i].Text.Contains("Hyundai"))
+                    return true;
+            }
+
+            return false;
+
+        }
+
         public List<int> GetPrices()
         {
             Thread.Sleep(5000);
