@@ -1,0 +1,37 @@
+CSS
+
+1. $$("header")
+$$(".example")
+2. $$(".example li:nth-child(3)")
+3. $$("#filters_main")
+$$("#filters_main>div")
+4. $$(".properties_block")
+5. a) $(".properties_block:nth-child(9)") 
+   b) $(".properties_block:contains('Разрешение дисплея')")
+$$(".properties_block .block_title")
+$$(".block_title")
+6. $(".properties_block:contains('Разрешение дисплея') .block_title")
+$(".properties_block:contains('Разрешение дисплея') .chechboxes li:nth-child(2)")
+$(".properties_block:contains('Разрешение дисплея') .chechboxes li:has(a:contains('HD'))")
+7. $(".properties_block:contains('Разрешение дисплея') .chechboxes li:has(a:contains('Full HD'))")
+$(".properties_block:contains('Разрешение дисплея') .chechboxes li:has(a:contains('Full HD')) #prop_20306_2")
+$(".properties_block:contains('Разрешение дисплея') .chechboxes li:has(a:contains('Full HD')) .filter_analytics_link")
+$(".properties_block:contains('Разрешение дисплея') .chechboxes li:has(a:contains('Full HD'))")
+8. $(".properties_block:contains('Разрешение дисплея') .chechboxes li:has(a:contains('Full HD')) input")
+9. $(".properties_block:contains('Разрешение дисплея') .chechboxes li:has(a:contains('Full HD')) a")
+
+XPath
+
+1. $x("//header")
+$x("//div[@class='example']")                       $x("//*[@class='example']")
+2. $x("//*[@class='example']//li[3]")				$x("//*[@class='example']//a[contains(text(),'Керхер пароочиститель')]")
+3. $x("//*[@id='filters_main']")
+4. $x("//*[contains(@class,'properties_block')]")
+5. a) $x("//*[contains(@class,'properties_block')] [9]")   
+   b) $x("//*[contains(text(),'Разрешение дисплея')]/parent::*[contains(@class,'properties_block')]")
+6. a) $x("//*[contains(@class,'properties_block')][9]/div") 
+   b) $x("//*[contains(text(),'Разрешение дисплея')]/parent::*[contains(@class,'properties_block')]/div")   
+7. $x("//*[contains(@class,'properties_block')] [9]//li[3]")
+8. $x("//*[contains(@class,'properties_block')] [9]//li[3]//input")
+9. $x("//*[contains(@class,'properties_block')] [9]//li[3]//a")
+   

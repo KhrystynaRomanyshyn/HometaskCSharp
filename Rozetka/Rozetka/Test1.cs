@@ -24,11 +24,10 @@ namespace Rozetka
         [TestMethod]
         public void HuindaySearch()
         {
-            //IWebDriver driver = new ChromeDriver();
-            //RozetkaPage page = new RozetkaPage(driver);
             page.Open();
             page.SearchFor("Hyundai");
-            NUnit.Framework.Assert.IsTrue(page.SearchResult());
+            //  NUnit.Framework.Assert.IsTrue(page.SearchResult());
+            NUnit.Framework.Assert.IsTrue(page.isNameProduct());
             NUnit.Framework.Assert.IsTrue(page.GetMoreItemsClass(), "'Показать еще 32 товара' element hasn't been displayed");
         }
 
@@ -52,13 +51,12 @@ namespace Rozetka
             {
                 NUnit.Framework.Assert.AreEqual(prices[i], notSortedPrices[i]);
             }
-            // NUnit.Framework.Assert
         }
 
         [TestCleanup]
         public void TearDown()
         {
-           _driver.Quit();
+          _driver.Quit();
         }
     }
 }
