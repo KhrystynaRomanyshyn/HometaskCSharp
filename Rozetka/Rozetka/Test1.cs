@@ -4,11 +4,12 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit;
 using NUnit.Framework;
-using OpenQA.Selenium.Support;
+using OpenQA.Selenium.Remote;
 
 namespace Rozetka
 {
     [TestClass]
+    [Parallelizable(ParallelScope.Fixtures)]
     public class Test1
     {
         IWebDriver _driver;
@@ -17,13 +18,18 @@ namespace Rozetka
         [TestInitialize]
         public void SetUp()
         {
-            _driver = new ChromeDriver();
+            _driver = new RemoteWebDriver(new Uri("http://10.17.184.26:4444/wd/hub"), new ChromeOptions());
+
+            //_driver = new ChromeDriver();
+            //page = new RozetkaPage(_driver);
             page = new RozetkaPage(_driver);
+
         }
 
         [TestMethod]
         public void HuindaySearch()
         {
+
             page.Open();
             page.SearchFor("Hyundai");
             //  NUnit.Framework.Assert.IsTrue(page.SearchResult());
