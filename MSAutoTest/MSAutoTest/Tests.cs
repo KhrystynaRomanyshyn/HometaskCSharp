@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
 
@@ -34,8 +36,15 @@ namespace MSAutoTest
 
         public void WhenAboutUsMenuItemIsClicked()
         {
+            //Actions builder = new Actions(driver);
+            //builder.MoveToElement(driver.FindElement(By.CssSelector("li:nth-child(1) > a"))).Build().Perform();
+
             driver.FindElement(By.CssSelector("li:nth-child(1) > a")).Click();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+
+            //WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+            //var element = wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("li:nth-child(4) > a:hidden")));
+
             driver.FindElement(By.CssSelector("li:nth-child(4) > a")).Click();
         }
 
