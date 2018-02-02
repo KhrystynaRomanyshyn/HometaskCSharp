@@ -1,18 +1,17 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-
 using System;
-
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace Test
 {
     [Binding]
-    public class Test1Steps
+    public class LogIn
     {
         public IWebDriver driver = new ChromeDriver();
 
+        [Test]
         [Given(@"the main page with credentials is opened")]
         public void GivenTheMainPageWithCredentialsIsOpened()
         {
@@ -24,13 +23,13 @@ namespace Test
         {
             string login = table.Rows[0]["Login"];
             driver.FindElement(By.Id("user_email")).SendKeys(login);
-            IWebElement button_login = driver.FindElement(By.XPath("//button[contains(text(), 'Enter')]"));
-            button_login.Click();
+            IWebElement buttonLogin = driver.FindElement(By.XPath("//button[contains(text(), 'Enter')]"));
+            buttonLogin.Click();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             string password = table.Rows[0]["Password"];
             driver.FindElement(By.CssSelector("#user_password")).SendKeys(password);
             driver.FindElement(By.XPath("//button[contains(text(), 'Enter')]")).Click();
-           driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
 
         [Then(@"the user's main page opens")]
@@ -38,7 +37,7 @@ namespace Test
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             bool isElementPresent = driver.FindElement(By.XPath("//button[contains(text(), 'Logout')]")).Enabled;
-            Assert.AreEqual(true, isElementPresent);    
+            Assert.AreEqual(true, isElementPresent);
         }
     }
 }
