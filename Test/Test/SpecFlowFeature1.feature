@@ -12,6 +12,7 @@ Scenario: Load json file from folder
 	Given login as admin
 	| Login          | Password |
 	| admin@epam.com | admin123 | 
+	
 	When admin choose file
 
-	Then button Import test group is available
+	Then The filename is displayed

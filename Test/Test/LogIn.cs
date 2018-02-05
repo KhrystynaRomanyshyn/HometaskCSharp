@@ -11,7 +11,6 @@ namespace Test
     {
         public IWebDriver driver = new ChromeDriver();
 
-        [Test]
         [Given(@"the main page with credentials is opened")]
         public void GivenTheMainPageWithCredentialsIsOpened()
         {
